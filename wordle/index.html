@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Wordle game</h1>
+    <style>
+      input {
+        width: 50px;
+        height: 50px;
+        font-size: 40px;
+        text-align: center;
+        margin-bottom: 5px;
+      }
+    </style>
+    <input class="input" />
+    <input class="input" />
+    <input class="input" />
+    <input class="input" />
+    <input class="input" />
+    <button>제출</button>
+
+    <script>
+      //ans 리스트에서 랜덤으로 정하기
+      #TODO
+      const ansList = ["grade", "sixty", "gamer", "beach", "straw"];
+      var ans = "abcde";
+      document.querySelector("button").addEventListener("click", function () {
+        var input = document.querySelectorAll(".input");
+        let grade = 0;
+        for (let i = 0; i < ans.length; i++) {
+          //1. 정답과 자릿 수가 같으면 초록색
+          if (input[i].value === ans[i]) {
+            input[i].style.background = "green";
+            grade++;
+            //2. 정답은 있지만 자릿 수가 다르면 노란색
+          } else if (ans.includes(input[i].value)) {
+            input[i].style.background = "yellow";
+            //3. 둘다 틀리면 회색
+          } else {
+            input[i].style.background = "lightgray";
+          }
+          input[i].classList.remove("input");
+        }
+        //정답이면 축하하고 초기화
+        if (grade === 5) {
+          alert("Collect!");
+          //초기화함
+          #TODO
+
+        }
+        console.log(input);
+        //틀릴 때마다 기회 더 줌(template을 무한 제공함)
+        var template = `<div>
+          <input class="input" />
+          <input class="input" />
+          <input class="input" />
+          <input class="input" />
+          <input class="input" />
+        </div>`;
+        document
+          .querySelector("body")
+          .insertAdjacentHTML("beforeend", template);
+      });
+    </script>
+  </body>
+</html>
