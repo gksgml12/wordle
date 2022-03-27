@@ -26,9 +26,8 @@
 
     <script>
       //ans 리스트에서 랜덤으로 정하기
-      #TODO
       const ansList = ["grade", "sixty", "gamer", "beach", "straw"];
-      var ans = "abcde";
+      var ans =ansList[Math.floor(Math.random()*ansList.length)];
       document.querySelector("button").addEventListener("click", function () {
         var input = document.querySelectorAll(".input");
         let grade = 0;
@@ -48,9 +47,8 @@
         }
         //정답이면 축하하고 초기화
         if (grade === 5) {
-          alert("Collect!");
-          //초기화함
-          #TODO
+          alert("Congratulations!!");
+          window.location.reload();
 
         }
         console.log(input);
