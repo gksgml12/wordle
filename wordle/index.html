@@ -8,13 +8,22 @@
   </head>
   <body>
     <h1>Wordle game</h1>
+    <div class="chance">남은 횟수: 00</div>
     <style>
       input {
         width: 50px;
         height: 50px;
         font-size: 40px;
         text-align: center;
-        margin-bottom: 5px;
+        margin-b
+        ottom: 5px;
+      }
+      .chance{
+        position: relative;
+        text-align: right;
+      }
+      .last{
+        background-color: red;
       }
     </style>
     <input class="input" />
@@ -26,8 +35,14 @@
 
     <script>
       //ans 리스트에서 랜덤으로 정하기
+      var CHANCE=10;
       const ansList = ["grade", "sixty", "gamer", "beach", "straw"];
       var ans =ansList[Math.floor(Math.random()*ansList.length)];
+
+      const chance =document.querySelector(".chance");
+      const back = document.querySelector("body");
+      chance.innerText=`남은 횟수: ${CHANCE}`;
+
       document.querySelector("button").addEventListener("click", function () {
         var input = document.querySelectorAll(".input");
         let grade = 0;
@@ -44,6 +59,16 @@
             input[i].style.background = "lightgray";
           }
           input[i].classList.remove("input");
+        }
+        CHANCE-=1;
+        chance.innerText=`남은 횟수: ${CHANCE}`;
+        if (CHANCE===1) {
+          chance.innerText="Last chance!";
+          back.className="last";
+        }
+        if (CHANCE===0) {
+          alert("Failㅠㅠ");
+          window.location.reload();
         }
         //정답이면 축하하고 초기화
         if (grade === 5) {
